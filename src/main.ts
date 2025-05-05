@@ -1,8 +1,13 @@
 import { createApp } from "vue";
 import "./style.css";
 import App from "./App.vue";
-import i18n from "./i18n";
+import i18n, { setLocale, DEFAULT_LOCALE } from "./i18n";
+
+const savedLocale = localStorage.getItem("locale") || DEFAULT_LOCALE;
 
 const app = createApp(App);
 app.use(i18n);
-app.mount("#app");
+
+setLocale(savedLocale as any).then(() => {
+  app.mount("#app");
+});

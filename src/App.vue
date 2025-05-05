@@ -2,10 +2,12 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import { useI18n } from "vue-i18n";
 
+import { setLocale } from "./i18n";
 const { locale } = useI18n();
 
-function switchLocale() {
-  locale.value = locale.value === "de" ? "ru" : "de";
+async function switchLocale() {
+  const newLocale = locale.value === "de" ? "ru" : "de";
+  await setLocale(newLocale);
 }
 </script>
 
