@@ -1,5 +1,14 @@
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
+/* Импортируем основные части сайта */
+import AppHeader from "./components/AppHeader/AppHeader.vue";
+import HeroSection from "./components/HeroSection/HeroSection.vue";
+import DeliciousBlock from "./components/DeliciousBlock/DeliciousBlock.vue";
+import ProductsBlock from "./components/ProductsBlock/ProductsBlock.vue";
+import EventsBlock from "./components/EventsBlock/EventsBlock.vue";
+import ContactsBlock from "./components/ContactsBlock/ContactsBlock.vue";
+import AppFooter from "./components/AppFooter/AppFooter.vue";
+
+/* Блок переключения языка */
 import { useI18n } from "vue-i18n";
 
 import { setLocale } from "./i18n";
@@ -12,32 +21,16 @@ async function switchLocale() {
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <AppHeader />
+  <HeroSection />
+  <DeliciousBlock />
+  <ProductsBlock />
+  <EventsBlock />
+  <ContactsBlock />
+  <AppFooter />
+
   <div>
     <p>{{ $t("hello") }}</p>
     <button @click="switchLocale">Switch language</button>
   </div>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>

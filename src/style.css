@@ -74,3 +74,8 @@
 body {
   font-family: "Montserrat", sans-serif;
 }
+
+/* @TODO: Макет - удалить, когда не будет нужен */
+.mock-up {
+  @apply border p-10 mx-auto max-w-[380px] lg:max-w-[1270px];
+}
