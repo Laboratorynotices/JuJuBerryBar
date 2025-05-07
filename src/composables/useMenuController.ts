@@ -17,6 +17,11 @@ export const useMenuController = () => {
   // Флаг для отслеживания состояния монтирования компонента
   const isMounted = ref(false);
 
+  // Состояние для отслеживания открытия/закрытия мобильного меню
+  const isMenuOpen = ref(false);
+  // Состояние для отслеживания видимости меню (для перехода из десктопа в мобильный)
+  const hideMenu = ref(false);
+
   // Проверяем ширину окна и определяем, является ли оно мобильным
   const isMobile = computed((): boolean => {
     // При инициализации компонента, когда он еще не смонтирован, возвращаем true
@@ -27,6 +32,18 @@ export const useMenuController = () => {
     // Если ширина окна меньше MD_BREAKPOINT, это мобильное устройство
     return windowInnerWidthRem.windowWidthRem.value < MD_BREAKPOINT;
   });
+
+  // Функция для переключения состояния мобильного меню
+  const toggleMenu = () => {
+    isMenuOpen.value = !isMenuOpen.value;
+  };
+
+  // Функция для закрытия меню
+  const closeMenu = () => {
+    if (isMenuOpen.value) {
+      isMenuOpen.value = false;
+    }
+  };
 
   // Функция для регистрации монтирования компонента
   function setMounted() {
@@ -41,5 +58,9 @@ export const useMenuController = () => {
   return {
     isMobile,
     isMounted,
+    hideMenu,
+    isMenuOpen,
+    closeMenu,
+    toggleMenu,
   };
 };

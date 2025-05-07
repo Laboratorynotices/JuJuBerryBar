@@ -76,7 +76,7 @@ body {
 }
 
 header {
-  @apply flex gap-10 items-center my-10;
+  @apply flex justify-between md:justify-start gap-10 items-center my-10;
 
   > p {
     @apply text-accent-primary font-extrabold;
@@ -86,9 +86,9 @@ header {
 
 /* @TODO: Макет - удалить, когда не будет нужен */
 .mock-up {
-  @apply border p-10 mx-6 xl:mx-auto max-w-[380px] md:max-w-[1270px];
+  @apply border p-10 mx-6 xl:mx-auto md:max-w-[1270px];
 }
 
 .wrap-container {
-  @apply mx-6 xl:mx-auto max-w-[380px] md:max-w-[1270px];
+  @apply mx-6 xl:mx-auto md:max-w-[1270px];
 }
