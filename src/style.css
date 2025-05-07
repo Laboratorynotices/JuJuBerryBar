@@ -75,7 +75,20 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+header {
+  @apply flex gap-10 items-center my-10;
+
+  > p {
+    @apply text-accent-primary font-extrabold;
+    font-size: clamp(22px, 4vw, 38px);
+  }
+}
+
 /* @TODO: Макет - удалить, когда не будет нужен */
 .mock-up {
-  @apply border p-10 mx-auto max-w-[380px] lg:max-w-[1270px];
+  @apply border p-10 mx-6 xl:mx-auto max-w-[380px] md:max-w-[1270px];
+}
+
+.wrap-container {
+  @apply mx-6 xl:mx-auto max-w-[380px] md:max-w-[1270px];
 }
