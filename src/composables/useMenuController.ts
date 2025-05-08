@@ -1,4 +1,4 @@
-import { computed, ref, onMounted } from "vue";
+import { computed, ref, onMounted, onUnmounted, watch } from "vue";
 import { useWindowInnerWidthRem } from "./useWindowInnerWidthRem";
 
 /**
@@ -33,6 +33,9 @@ export const useMenuController = () => {
     return windowInnerWidthRem.windowWidthRem.value < MD_BREAKPOINT;
   });
 
+  // Добавляем отслеживание изменений типа устройства
+  const previousDeviceType = ref(isMobile.value);
+
   // Функция для переключения состояния мобильного меню
   const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
@@ -50,9 +53,66 @@ export const useMenuController = () => {
     isMounted.value = true;
   }
 
-  // Запускаем setMounted при монтировании компонента
+  // Обработчик клика вне меню для его закрытия
+  const handleClickOutside = (event: MouseEvent) => {
+    const navContainer = ref<HTMLElement | null>(null);
+    // На ref поменять нельзя, поскольку мы не в компоненте с тегом с этим ref
+    const burgerButton = document.getElementById("burger-button");
+
+    // Проверяем, что клик был вне меню и кнопки-гамбургера
+    // и что меню открыто и мы на мобильном устройстве
+    if (isMenuOpen.value && isMobile.value && navContainer && burgerButton) {
+      // Если клик был вне меню и кнопки-гамбургера, закрываем меню
+      if (
+        !navContainer.value?.contains(event.target as Node) &&
+        !burgerButton.contains(event.target as Node)
+      ) {
+        closeMenu();
+      }
+    }
+  };
+
+  // Функции для обработки переходов между типами устройств
+  // Переход с мобильного на десктоп
+  const handleMobileToDesktop = (): void => {
+    // Убеждаемся, что мобильное меню закрыто при переходе на десктоп
+    isMenuOpen.value = false;
+  };
+
+  // Переход с десктопа на мобильный
+  const handleDesktopToMobile = (): void => {
+    // Скрываем меню на пару секунд
+    // чтобы избежать дёргания при переходе
+    hideMenu.value = true;
+    setTimeout(() => {
+      hideMenu.value = false;
+    }, 300); // Время задержки перед показом меню
+  };
+
+  // Отслеживаем изменения типа устройства
+  watch(isMobile, (newValue, oldValue) => {
+    // Обновляем предыдущее значение
+    previousDeviceType.value = oldValue;
+
+    // Если переход с мобильного на десктоп
+    if (oldValue === true && newValue === false) {
+      handleMobileToDesktop();
+    }
+    // Если переход с десктопа на мобильный
+    else if (oldValue === false && newValue === true) {
+      handleDesktopToMobile();
+    }
+  });
+
+  // Установка слушателей событий при монтировании компонента
   onMounted(() => {
     setMounted();
+    document.addEventListener("click", handleClickOutside);
+  });
+
+  // Удаление слушателей событий при уничтожении компонента
+  onUnmounted(() => {
+    document.removeEventListener("click", handleClickOutside);
   });
 
   return {
