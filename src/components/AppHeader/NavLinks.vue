@@ -25,8 +25,7 @@ const navItems = [
 <template>
   <!-- Навигационные ссылки (один компонент для обоих режимов) -->
   <ul
-    id="nav-container"
-    class="md:flex md:space-x-6"
+    id="nav-list"
     :class="[
       // На пару секунд скрываем меню при переходе с десктопа на мобильный
       hideMenu ? 'hidden' : '',
@@ -46,7 +45,7 @@ const navItems = [
           '',
     ]"
   >
-    <li v-for="item in navItems" :key="item.id" class="mb-4 md:mb-0">
+    <li v-for="item in navItems" :key="item.id">
       <a
         :href="item.path"
         class="text-primary hover:text-primary-light transition-colors duration-300 block py-2 md:py-0"
@@ -56,9 +55,3 @@ const navItems = [
     </li>
   </ul>
 </template>
-
-<style lang="css" scoped>
-ul {
-  font-size: clamp(16px, 2vw, 22px);
-}
-</style>
