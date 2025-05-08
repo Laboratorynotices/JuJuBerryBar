@@ -13,7 +13,7 @@ defineProps({
     id="burger-button"
     class="w-7.5 h-7.5 flex flex-col justify-between place-items-end overflow-hidden focus:outline-none md:hidden z-20"
     :class="isOpen ? 'fixed right-[24px]' : 'relative'"
-    aria-label="Меню"
+    :aria-label="$t('Open menu')"
   >
     <!-- Три полоски, которые превращаются в крестик -->
     <!-- Верхняя полоска -->
