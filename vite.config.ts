@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import tailwindcss from "@tailwindcss/vite";
+import path from "path";
 
 // Определяем константу MD_BREAKPOINT (rem) для использования в CSS и JavaScript
 // Значение 48rem соответствует 768px, что является стандартным значением для медиазапросов
@@ -24,6 +25,11 @@ export default defineConfig(({ mode }) => ({
           }
         `,
       },
+    },
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 }));
