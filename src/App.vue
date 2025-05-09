@@ -22,11 +22,13 @@ async function switchLocale() {
 
 <template>
   <AppHeader />
-  <HeroSection />
-  <DeliciousBlock />
-  <ProductsBlock />
-  <EventsBlock />
-  <ContactsBlock />
+  <main>
+    <HeroSection />
+    <DeliciousBlock />
+    <ProductsBlock />
+    <EventsBlock />
+    <ContactsBlock />
+  </main>
   <AppFooter />
 
   <div>
