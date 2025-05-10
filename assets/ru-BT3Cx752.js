@@ -1,0 +1,1 @@
+const t="Привет",n="Деликатесы",o="Мероприятия",s="Контакты",c={hello:t,Delicious:n,Events:o,Contacts:s,"Open menu":"Открыть меню"};export{s as Contacts,n as Delicious,o as Events,c as default,t as hello};
