@@ -70,6 +70,21 @@
         var(--color-accent-tertiary) 87.2%
       );
     }
+
+    .app-button {
+      &.primary {
+        @apply text-background-secondary;
+        background: linear-gradient(
+          265deg,
+          var(--color-accent-primary) 6.79%,
+          var(--color-accent-tertiary) 97.2%
+        );
+      }
+
+      &.secondary {
+        @apply border border-neutral-medium;
+      }
+    }
   }
 
   /* Темная тема */
@@ -85,6 +100,21 @@
         var(--color-accent-primary-dark) 3.14%,
         var(--color-accent-tertiary-dark) 87.2%
       );
+    }
+
+    .app-button {
+      &.primary {
+        @apply text-background-secondary-dark;
+        background: linear-gradient(
+          265deg,
+          var(--color-accent-primary-dark) 6.79%,
+          var(--color-accent-tertiary-dark) 97.2%
+        );
+      }
+
+      &.secondary {
+        @apply border border-neutral-medium-dark;
+      }
     }
   }
 }
@@ -123,6 +153,20 @@ header {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+}
+
+/**
+* Оформление компонента "Кнопка"
+*/
+.app-button {
+  @apply rounded-full items-center inline-block;
+
+  &.primary {
+    @apply py-[clamp(12px,2.1vw,20px)] px-[clamp(52px,9vw,80px)];
+  }
+  &.secondary {
+    @apply py-[clamp(12px,2.1vw,20px)] px-[clamp(36px,6vw,54px)];
   }
 }
 
