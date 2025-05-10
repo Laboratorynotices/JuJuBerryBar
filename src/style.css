@@ -62,7 +62,8 @@
       @apply bg-background-primary text-neutral-high;
     }
 
-    header > p {
+    header > p,
+    .headingPrimary span {
       background: linear-gradient(
         263deg,
         var(--color-accent-primary) 3.14%,
@@ -77,7 +78,8 @@
       @apply bg-background-primary-dark text-neutral-high-dark;
     }
 
-    header > p {
+    header > p,
+    .headingPrimary span {
       background: linear-gradient(
         263deg,
         var(--color-accent-primary-dark) 3.14%,
@@ -109,6 +111,19 @@ header {
     > li {
       @apply mb-4 md:mb-0;
     }
+  }
+}
+
+/**
+* Оформление заголовков блоков
+*/
+.headingPrimary {
+  @apply text-[clamp(40px,8.3vw,80px)] font-extrabold leading-[109.471%] tracking-[clamp(-1.44px,-0.25vw,-2.4px)];
+
+  span {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
 
