@@ -63,7 +63,8 @@
     }
 
     header > p,
-    .headingPrimary span {
+    .headingPrimary span,
+    .hero-section .stats-list li span.value::after {
       background: linear-gradient(
         263deg,
         var(--color-accent-primary) 3.14%,
@@ -94,7 +95,8 @@
     }
 
     header > p,
-    .headingPrimary span {
+    .headingPrimary span,
+    .hero-section .stats-list li span.value::after {
       background: linear-gradient(
         263deg,
         var(--color-accent-primary-dark) 3.14%,
@@ -124,11 +126,16 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+/* Контейнер-обёртка, чтобы окраничить ширину блоков */
+.wrap-container {
+  @apply mx-6 xl:mx-auto md:max-w-[1270px];
+}
+
 header {
   @apply flex justify-between md:justify-start gap-[clamp(81px,13vw,95px)] leading-[normal] items-center my-10;
 
   > p {
-    @apply font-extrabold  tracking-[clamp(-0.66px,-0.12vw,-1.13px)] text-[clamp(22px,4vw,38px)] leading-[140%];
+    @apply font-extrabold tracking-[clamp(-0.66px,-0.12vw,-1.13px)] text-[clamp(22px,4vw,38px)] leading-[140%];
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -160,7 +167,7 @@ header {
 * Оформление компонента "Кнопка"
 */
 .app-button {
-  @apply rounded-full items-center inline-block;
+  @apply rounded-full items-center inline-flex min-h-full;
 
   &.primary {
     @apply py-[clamp(12px,2.1vw,20px)] px-[clamp(52px,9vw,80px)];
@@ -170,11 +177,56 @@ header {
   }
 }
 
+.hero-section {
+  @apply md:flex md:flex-row-reverse md:mb-5;
+
+  & .img-wrapper {
+    @apply justify-self-auto xl:flex-1;
+
+    & img {
+      @apply block w-[68%] md:w-[80%] lg:w-[90%] mx-auto md:mr-0;
+    }
+  }
+
+  & .text-block {
+    @apply flex flex-col gap-9 justify-between my-9 md:my-0 md:w-[90%] lg:w-3/4 xl:w-auto xl:flex-1;
+
+    & p {
+      @apply text-[clamp(12px,2.1vw,20px)];
+    }
+  }
+
+  /* Ссылки-кнопки-пилюли */
+  & .links {
+    @apply flex flex-col justify-items-stretch sm:flex-row gap-3 justify-between items-center;
+
+    & a {
+      @apply inline-flex items-center justify-center min-h-full w-full sm:w-fit;
+    }
+  }
+
+  /* Список статистики */
+  & .stats-list {
+    @apply flex flex-row justify-between;
+    & li {
+      & span.value {
+        @apply text-[clamp(40px,7vw,62px)] leading-[110%] tracking-[clamp(-1.25px,-0.2vw,-1.9px)];
+      }
+      & span.value::after {
+        @apply content-["+"];
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      & span.label {
+        @apply text-[clamp(12px,2.1vw,20px)] leading-[144.471%] tracking-[clamp(-0.24px,-0.04vw,-0.4px)];
+      }
+    }
+  }
+}
+
 /* @TODO: Макет - удалить, когда не будет нужен */
 .mock-up {
   @apply border p-10 mx-6 xl:mx-auto md:max-w-[1270px];
-}
-
-.wrap-container {
-  @apply mx-6 xl:mx-auto md:max-w-[1270px];
 }
