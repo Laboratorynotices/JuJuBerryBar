@@ -210,7 +210,11 @@ header {
   }
 
   & .text-block {
-    @apply flex flex-col gap-9 justify-between my-9 md:my-0 md:w-[90%] lg:w-3/4 xl:w-auto xl:flex-1;
+    @apply flex relative flex-col gap-9 justify-between my-9 md:my-0 md:w-[90%] lg:w-3/4 xl:w-auto xl:flex-1;
+
+    & .hero-section__heading::before {
+      @apply top-[clamp(40px,8vw,80px)] left-[clamp(20px,4vw,40px)];
+    }
 
     & p {
       @apply text-[clamp(12px,2.1vw,20px)];

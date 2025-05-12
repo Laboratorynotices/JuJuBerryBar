@@ -7,7 +7,7 @@ import HeaderStats from "./HeaderStats.vue";
 <template>
   <div class="hero-section__text-block text-block">
     <HeadingPrimary
-      class="hero-section__heading"
+      class="hero-section__heading flashed"
       :text="$t('New Cafe by Juju Berry')"
     />
 
