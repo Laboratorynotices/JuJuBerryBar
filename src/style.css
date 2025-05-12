@@ -202,10 +202,16 @@ header {
   @apply md:flex md:flex-row-reverse md:mb-5;
 
   & .img-wrapper {
-    @apply justify-self-auto xl:flex-1;
+    @apply relative h-fit justify-self-auto xl:flex-1;
 
-    & img {
-      @apply block w-[68%] md:w-[80%] lg:w-[90%] mx-auto md:mr-0;
+    & .img-decoration {
+      & img {
+        @apply block w-[68%] md:w-[80%] lg:w-[90%] mx-auto md:mr-0;
+      }
+    }
+
+    & .img-decoration::before {
+      @apply bottom-[clamp(20px,4vw,40px)] left-[clamp(40px,8vw,80px)];
     }
   }
 

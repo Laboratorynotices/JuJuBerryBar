@@ -5,7 +5,9 @@ import TextBlock from "./TextBlock.vue";
 <template>
   <article class="wrap-container hero-section">
     <div class="hero-section__image img-wrapper">
-      <img src="@/assets/imgs/Hero/Hero-Image.png" alt="Hero Image" />
+      <div class="hero-section__image-decoration img-decoration flashed">
+        <img src="@/assets/imgs/Hero/Hero-Image.png" alt="Hero Image" />
+      </div>
     </div>
 
     <TextBlock />
