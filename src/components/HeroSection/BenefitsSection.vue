@@ -25,16 +25,21 @@ const benefitsData: BenefitProps[] = [
 
 <template>
   <div class="benefits-wrapper">
-    <div
-      class="benefits-item benefit-card"
-      v-for="(benefitElement, index) in benefitsData"
-      :key="index"
-    >
-      <BenefitCard
-        :title="benefitElement.title"
-        :description="benefitElement.description"
-        :icon="benefitElement.icon"
-      />
+    <div class="benefits-star">
+      {{ $t("We have") }}
+    </div>
+    <div class="benefits-container flashed">
+      <div
+        class="benefits-item benefit-card"
+        v-for="(benefitElement, index) in benefitsData"
+        :key="index"
+      >
+        <BenefitCard
+          :title="benefitElement.title"
+          :description="benefitElement.description"
+          :icon="benefitElement.icon"
+        />
+      </div>
     </div>
   </div>
 </template>
