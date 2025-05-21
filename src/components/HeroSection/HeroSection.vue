@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TextBlock from "./TextBlock.vue";
+import BenefitsSection from "./BenefitsSection.vue";
 </script>
 
 <template>
@@ -11,5 +12,9 @@ import TextBlock from "./TextBlock.vue";
     </div>
 
     <TextBlock />
+  </article>
+
+  <article class="wrap-container benefits-section">
+    <BenefitsSection />
   </article>
 </template>
