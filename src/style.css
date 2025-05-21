@@ -181,7 +181,13 @@ body {
 
 /* "Вспышки" под блоками, но не забудьте родительскому тегу задать relative! */
 .flashed::before {
-  @apply absolute content-[""] w-[clamp(75px,15vw,140px)] h-[clamp(45px,10vw,140px)] blur-[8vw] rounded-full opacity-50 -z-10;
+  @apply absolute content-[""] w-[clamp(75px,15vw,140px)] h-[clamp(45px,10vw,140px)] blur-[8vw] lg:blur-3xl 
+  rounded-full opacity-50 -z-10;
+}
+
+/* Родительский элемент для "вспышек" должен быть задан с относительным позиционированием */
+*:has(> .flashed) {
+  @apply relative;
 }
 
 header {
