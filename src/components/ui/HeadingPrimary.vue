@@ -8,6 +8,11 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  markedWords: {
+    // Сколько слов выделить
+    type: String,
+    default: "",
+  },
 });
 
 /**
@@ -24,26 +29,38 @@ const sanitizeHtml = (html: string): string => {
 };
 
 /**
+ * Функция для безопасного преобразования строки в число
+ * @param str - Входная строка
+ */
+const stringToNumber = (str: string, defaultValue: number = 2): number => {
+  const num = parseInt(str, 10);
+  return isNaN(num) ? defaultValue : num;
+};
+
+/**
  * Форматирует текст, выделяя последние два слова в `<span class="mark">`,
- * если слов больше 2.
+ * если слов больше props.markedWords.
  * @param text - Входной текст для обработки
  * @returns Отформатированная строка с HTML-разметкой
  */
 const resultText = computed(() => {
-  // 1. Санитизация текста
-  const sanitizedText = sanitizeHtml(props.text);
+  // 1. Санитизация числа
+  const markedWords: number = stringToNumber(props.markedWords);
 
-  // 2. Разбивка на слова
+  // 2. Санитизация текста
+  const sanitizedText: string = sanitizeHtml(props.text);
+
+  // 3. Разбивка на слова
   const words = sanitizedText.trim().split(/\s+/);
 
-  // 3. Обработка случаев с < 2 словами
-  if (words.length < 2) return sanitizedText;
+  // 4. Обработка случаев с < markedWords словами
+  if (words.length < markedWords) return sanitizedText;
 
-  // 4. Разделение слов:
-  const firstPart = words.slice(0, -2).join(" ");
-  const lastWords = words.slice(-2).join(" ");
+  // 5. Разделение слов:
+  const firstPart = words.slice(0, -markedWords).join(" ");
+  const lastWords = words.slice(-markedWords).join(" ");
 
-  // 5. Формирование результата
+  // 6. Формирование результата
   return [firstPart, `<span class="mark">${lastWords}</span>`].join(
     firstPart ? " " : "",
   );
