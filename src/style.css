@@ -112,6 +112,10 @@
         box-shadow: 0px 2.321px 23.788px 0px var(--color-neutral-low);
       }
     }
+
+    .delicious-section .first-img-wrapper::before {
+      @apply bg-accent-soft;
+    }
   }
 
   /* Темная тема */
@@ -171,6 +175,10 @@
 
         box-shadow: 0px 2.321px 23.788px 0px var(--color-neutral-low-dark);
       }
+    }
+
+    .delicious-section .first-img-wrapper::before {
+      @apply bg-accent-soft-dark;
     }
   }
 }
@@ -386,6 +394,66 @@ header {
 
       & .card-description {
         @apply text-[clamp(11px,2.1vw,20px)] tracking-[clamp(-0.24px,-0.04vw,-0.4px)];
+      }
+    }
+  }
+}
+
+.delicious-section {
+  /* Расставляем дочерние элементы */
+  @apply flex flex-col md:flex-row md:items-end justify-between
+    mb-[clamp(35px,6vw,60px)];
+
+  & .first-img-wrapper {
+    /* Ширина картинки и её тени */
+    --img-width: 90%;
+    /* Координаты вершин полигона для обрезания картинки */
+    --img-polygon: polygon(74% 0, 100% 26%, 100% 100%, 0 100%, 0 0);
+
+    @apply relative mb-[3rem] md:mb-0 md:max-w-[35%] lg:max-w-[40%] xl:max-w-[50%] 2xl:max-w-[50%];
+
+    &::before {
+      @apply content-[""] 
+        bg-no-repeat bg-cover bg-center
+        absolute top-[clamp(15px,3vw,35px)] left-0 md:-left-[clamp(7px,2vw,18px)] -z-10
+        w-[var(--img-width)] md:w-full h-full;
+      clip-path: var(--img-polygon);
+    }
+
+    & img {
+      @apply w-[var(--img-width)] md:w-full ml-auto md:ml-0 mr-0;
+      clip-path: var(--img-polygon);
+    }
+  }
+
+  & .text-block-wrapper {
+    @apply md:max-w-[60%] lg:max-w-[55%] xl:max-w-[45%] 2xl:max-w-[40%];
+
+    & .header {
+      @apply mb-6;
+    }
+
+    & .flashed::before {
+      /* Подправляем положение "вспышки" */
+      @apply right-[2rem] top-[4rem];
+    }
+
+    & .text {
+      @apply mb-6;
+    }
+
+    & .image-wrapper {
+      & .branch-decorated::after {
+        /* Задаём размер */
+        @apply w-[clamp(300px,100vw,1000px)] h-[clamp(150px,50vw,500px)]
+        /* Задаём позицианирование */
+        -top-5 -left-1/3;
+      }
+      & .img-decoration {
+        & img {
+          @apply w-full;
+          clip-path: polygon(75% 0, 100% 25%, 100% 100%, 0 100%, 0 0);
+        }
       }
     }
   }
