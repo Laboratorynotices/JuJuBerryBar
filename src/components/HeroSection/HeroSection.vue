@@ -6,7 +6,9 @@ import BenefitsSection from "./BenefitsSection.vue";
 <template>
   <article class="wrap-container hero-section">
     <div class="hero-section__image img-wrapper">
-      <div class="hero-section__image-decoration img-decoration flashed">
+      <div
+        class="hero-section__image-decoration img-decoration branch-decorated flashed"
+      >
         <img src="@/assets/imgs/Hero/Hero-Image.png" alt="Hero Image" />
       </div>
     </div>
