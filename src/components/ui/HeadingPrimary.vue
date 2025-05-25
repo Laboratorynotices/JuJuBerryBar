@@ -10,7 +10,7 @@ const props = defineProps({
   },
   markedWords: {
     // Сколько слов выделить
-    type: String,
+    type: [String, Number],
     default: "",
   },
 });
@@ -45,7 +45,10 @@ const stringToNumber = (str: string, defaultValue: number = 2): number => {
  */
 const resultText = computed(() => {
   // 1. Санитизация числа
-  const markedWords: number = stringToNumber(props.markedWords);
+  const markedWords: number =
+    typeof props.markedWords === "number"
+      ? props.markedWords
+      : stringToNumber(props.markedWords);
 
   // 2. Санитизация текста
   const sanitizedText: string = sanitizeHtml(props.text);
