@@ -31,7 +31,7 @@ const navItems = [
       hideMenu ? 'hidden' : '',
       // Условные стили для мобильной версии
       isMobile
-        ? 'fixed left-0 right-0 top-0 bg-background-secondary z-10 pt-16 p-4 transition-all duration-300 ease-in-out'
+        ? 'fixed left-0 right-0 top-0 bg-background-secondary dark:bg-background-secondary-dark dark:text-neutral-high-dark z-10 pt-16 p-4 transition-all duration-300 ease-in-out'
         : 'relative',
       // Анимация появления/скрытия только для мобильной версии
       isMobile
@@ -46,10 +46,7 @@ const navItems = [
     ]"
   >
     <li v-for="item in navItems" :key="item.id">
-      <a
-        :href="item.path"
-        class="text-primary hover:text-primary-light transition-colors duration-300 block py-2 md:py-0"
-      >
+      <a :href="item.path">
         {{ $t(item.name) }}
       </a>
     </li>

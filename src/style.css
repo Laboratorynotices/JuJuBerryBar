@@ -216,6 +216,29 @@ body {
   @apply relative;
 }
 
+/* Оформление навигации */
+nav {
+  & ul li a {
+    /* Цвета для светлой темы */
+    @apply text-neutral-high hover:text-neutral-medium 
+    /* Цвета для тёмной темы */
+    dark:text-neutral-high-dark dark:hover:text-neutral-medium-dark
+    /* отступы */
+    block py-2 md:py-0
+    /* анимация (при наведении) */
+    transition-colors duration-300;
+  }
+
+  & button {
+    @apply w-7.5 h-7.5 flex flex-col justify-between place-items-end overflow-hidden focus:outline-none md:hidden z-20;
+
+    & span {
+      @apply h-0.5 bg-neutral-high dark:bg-neutral-high-dark rounded-sm duration-300;
+    }
+  }
+}
+
+/* Оформление шапки сайта */
 header {
   @apply flex justify-between md:justify-start gap-[clamp(81px,13vw,95px)] leading-[normal] items-center my-10;
 

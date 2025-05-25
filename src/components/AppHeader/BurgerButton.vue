@@ -11,26 +11,25 @@ defineProps({
 <template>
   <button
     id="burger-button"
-    class="w-7.5 h-7.5 flex flex-col justify-between place-items-end overflow-hidden focus:outline-none md:hidden z-20"
     :class="isOpen ? 'fixed right-[24px]' : 'relative'"
     :aria-label="$t('Open menu')"
   >
     <!-- Три полоски, которые превращаются в крестик -->
     <!-- Верхняя полоска -->
     <span
-      class="h-0.5 bg-neutral-high rounded-sm transition-transform origin-[right_center] duration-300"
+      class="transition-transform origin-[right_center]"
       :class="isOpen ? '-rotate-45 w-[130%]' : 'w-full'"
     ></span>
 
     <!-- Средняя полоска -->
     <span
-      class="h-0.5 bg-neutral-high rounded-sm w-full transition-opacity duration-300"
+      class="w-full transition-opacity"
       :class="isOpen ? 'opacity-0' : 'opacity-100'"
     ></span>
 
     <!-- Нижняя полоска -->
     <span
-      class="h-0.5 bg-neutral-high rounded-sm transition-transform origin-[right_center] duration-300"
+      class="transition-transform origin-[right_center]"
       :class="isOpen ? 'rotate-45 w-[130%]' : 'w-full'"
     ></span>
   </button>
