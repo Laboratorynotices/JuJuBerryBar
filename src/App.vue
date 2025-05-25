@@ -32,7 +32,7 @@ async function switchLocale() {
   <AppFooter />
 
   <div>
-    <p>{{ $t("hello") }}</p>
+    <p id="tail">{{ $t("hello") }}</p>
     <button @click="switchLocale">Switch language</button>
   </div>
 </template>
