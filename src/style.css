@@ -120,6 +120,32 @@
     .delicious-section .first-img-wrapper::before {
       @apply bg-accent-soft;
     }
+
+    .products-section .cards-list .cards-item {
+      @apply bg-neutral-medium;
+      background: linear-gradient(
+        140deg,
+        var(--color-neutral-high) 0%,
+        var(--color-neutral-low) 40%,
+        var(--color-neutral-high) 100%
+      );
+
+      &:hover {
+        /* При наведении на карточки, меняем фон */
+        @apply bg-accent-primary;
+        background: linear-gradient(
+          140deg,
+          var(--color-accent-primary) 0%,
+          var(--color-accent-secondary) 40%,
+          var(--color-accent-primary) 100%
+        );
+      }
+
+      & .card {
+        /* Возвращаем задний фон */
+        @apply bg-background-primary;
+      }
+    }
   }
 
   /* Темная тема */
@@ -185,6 +211,32 @@
 
     .delicious-section .first-img-wrapper::before {
       @apply bg-accent-soft-dark;
+    }
+
+    .products-section .cards-list .cards-item {
+      @apply bg-neutral-medium-dark;
+      background: linear-gradient(
+        140deg,
+        var(--color-neutral-high-dark) 0%,
+        var(--color-neutral-low-dark) 40%,
+        var(--color-neutral-high-dark) 100%
+      );
+
+      &:hover {
+        /* При наведении на карточки, меняем фон */
+        @apply bg-accent-primary-dark;
+        background: linear-gradient(
+          140deg,
+          var(--color-accent-primary-dark) 0%,
+          var(--color-accent-secondary-dark) 40%,
+          var(--color-accent-primary-dark) 100%
+        );
+      }
+
+      & .card {
+        /* Возвращаем задний фон */
+        @apply bg-background-primary-dark;
+      }
     }
   }
 }
@@ -439,9 +491,12 @@ header {
 }
 
 .delicious-section {
+  /* На сколько вниз уходит декорация первой картинки */
+  --img-decoration-offset: clamp(15px, 3vw, 35px);
+
   /* Расставляем дочерние элементы */
   @apply flex flex-col md:flex-row md:items-end justify-between
-    mb-[clamp(35px,6vw,60px)];
+    mb-[clamp(35px,6vw,60px)] pb-[var(--img-decoration-offset)];
 
   & .first-img-wrapper {
     /* Ширина картинки и её тени */
@@ -454,7 +509,7 @@ header {
     &::before {
       @apply content-[""] 
         bg-no-repeat bg-cover bg-center
-        absolute top-[clamp(15px,3vw,35px)] left-0 md:-left-[clamp(7px,2vw,18px)] -z-10
+        absolute top-[var(--img-decoration-offset)] left-0 md:-left-[clamp(7px,2vw,18px)] -z-10
         w-[var(--img-width)] md:w-full h-full;
       clip-path: var(--img-polygon);
     }
@@ -492,6 +547,88 @@ header {
         & img {
           @apply w-full;
           clip-path: polygon(75% 0, 100% 25%, 100% 100%, 0 100%, 0 0);
+        }
+      }
+    }
+  }
+}
+
+.products-section {
+  @apply mb-[clamp(35px,6vw,60px)];
+
+  & .description {
+    /* Упорядочиваем дочерние элементы */
+    @apply flex flex-col md:flex-row gap-[clamp(32px,10vw,100px)]
+    /* выравнивание дочерних элементов посередне */
+    items-center text-center md:text-left
+    /* Ограничения и отступы */
+    mb-[clamp(32px,6vw,63px)] md:w-3/4;
+
+    & .flashed::before {
+      /* Позиционирование "вспышки" */
+      @apply top-[clamp(20px,4vw,40px)] right-[clamp(20px,4vw,40px)] md:right-auto md:left-[clamp(40px,24vw,240px)];
+    }
+
+    & h1 {
+      @apply grow-4;
+    }
+
+    & p {
+      @apply grow-6;
+    }
+  }
+
+  & .cards-list {
+    /* Упорядочиваем дочерние элементы (карточки) */
+    @apply flex flex-wrap justify-between;
+
+    & .cards-item {
+      @apply w-full sm:w-[49%] md:w-[24%]
+      rounded-3xl mb-[clamp(20px,4vw,40px)];
+
+      & .card {
+        @apply rounded-3xl p-5 m-0.25 text-center
+        /* Растягиваем на всю высоту родителя */
+        flex flex-col justify-between
+        /* Задаём размеры */
+        h-[calc(100%-2px)] relative;
+
+        &:hover .img-circle-bg img {
+          @apply -translate-y-5/9;
+        }
+
+        & .img-circle-bg {
+          @apply relative mb-[clamp(18px,5%,30px)];
+          &::before {
+            @apply aspect-square;
+          }
+
+          img {
+            @apply w-[66%]
+            /* Анимация для картинки в карточке,
+              при наведении она будет двигаться вверх на 5/9 своего размера */
+            transition-transform duration-[0.5s];
+          }
+        }
+
+        & .card-title {
+          @apply text-[clamp(20px,3vw,32px)] font-semibold tracking-[clamp(-0.42px,-0.06vw,-0.64px)] mb-3;
+        }
+
+        & .card-description {
+          @apply flex-1 mb-[clamp(16px,2vw,22px)];
+        }
+
+        & .card-price-group {
+          @apply flex justify-between items-end leading-[normal] mb-[clamp(16px,2vw,22px)];
+
+          & .card-price {
+            @apply text-[clamp(20px,3vw,32px)] font-semibold tracking-[clamp(-0.42px,-0.06vw,-0.64px)];
+          }
+
+          & .card-volume {
+            @apply mb-0.25;
+          }
         }
       }
     }
