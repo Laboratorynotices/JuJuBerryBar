@@ -29,6 +29,8 @@ const variantClasses = computed(() => {
       return "primary";
     case ButtonVariant.Secondary:
       return "secondary";
+    case ButtonVariant.CardBtn:
+      return "cardBtn";
     default:
       const exhaustiveCheck: never = props.variant;
       throw new Error(

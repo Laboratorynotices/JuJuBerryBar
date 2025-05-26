@@ -7,6 +7,8 @@ export const ButtonVariant = {
   Primary: "Primary",
   // Второстепенный вариант
   Secondary: "Secondary",
+  // Вариант для карточек
+  CardBtn: "CardBtn",
 } as const;
 
 export type ButtonVariant = (typeof ButtonVariant)[keyof typeof ButtonVariant];
