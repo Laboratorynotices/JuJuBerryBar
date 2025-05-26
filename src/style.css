@@ -71,6 +71,17 @@
       );
     }
 
+    /* Цвета круглого фона для картинок */
+    .img-circle-bg::before {
+      background: linear-gradient(
+        265deg,
+        var(--color-accent-soft) 6.79%,
+        var(--color-accent-warm) 97.2%
+      );
+
+      box-shadow: 0px 2.321px 23.788px 0px var(--color-neutral-low);
+    }
+
     header > p,
     .headingPrimary span,
     .hero-section .stats-list li span.value::after {
@@ -103,16 +114,6 @@
       & .benefits-star {
         @apply text-background-secondary;
       }
-
-      & .benefit-card .card-icon .card-icon-decoration::before {
-        background: linear-gradient(
-          265deg,
-          var(--color-accent-soft) 6.79%,
-          var(--color-accent-warm) 97.2%
-        );
-
-        box-shadow: 0px 2.321px 23.788px 0px var(--color-neutral-low);
-      }
     }
 
     .delicious-section .first-img-wrapper::before {
@@ -132,6 +133,16 @@
         var(--color-accent-primary-dark) 3.05%,
         var(--color-accent-tertiary-dark) 40.73%
       );
+    }
+
+    .img-circle-bg::before {
+      background: linear-gradient(
+        265deg,
+        var(--color-accent-soft-dark) 6.79%,
+        var(--color-accent-warm-dark) 97.2%
+      );
+
+      box-shadow: 0px 2.321px 23.788px 0px var(--color-neutral-low-dark);
     }
 
     header > p,
@@ -165,16 +176,6 @@
 
       & .benefits-star {
         @apply text-background-secondary-dark;
-
-        box-shadow: 0px 2.321px 23.788px 0px var(--color-neutral-low-dark);
-      }
-
-      & .benefit-card .card-icon .card-icon-decoration::before {
-        background: linear-gradient(
-          265deg,
-          var(--color-accent-soft-dark) 6.79%,
-          var(--color-accent-warm-dark) 97.2%
-        );
 
         box-shadow: 0px 2.321px 23.788px 0px var(--color-neutral-low-dark);
       }
@@ -217,6 +218,19 @@ body {
 *:has(> .flashed),
 *:has(> .branch-decorated) {
   @apply relative;
+}
+
+/* Добавляем круг на заднем фоне картинкам. */
+.img-circle-bg {
+  @apply relative;
+
+  &::before {
+    @apply content-[""] block w-full h-full rounded-full;
+  }
+
+  & img {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
 }
 
 /* Оформление навигации */
@@ -403,14 +417,8 @@ header {
         /* Меняем расположение картинки карточки */
         relative;
 
-        & .card-icon-decoration {
-          &::before {
-            @apply content-[""] block w-[clamp(90px,15vw,150px)] h-[clamp(90px,15vw,150px)] rounded-full;
-          }
-
-          & img {
-            @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
-          }
+        & .img-circle-bg::before {
+          @apply w-[clamp(90px,15vw,150px)] h-[clamp(90px,15vw,150px)];
         }
       }
 

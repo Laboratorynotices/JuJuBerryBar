@@ -16,7 +16,7 @@ const imgSrc: string = new URL(
 
 <template>
   <div class="card-icon">
-    <div class="card-icon-decoration">
+    <div class="card-icon-decoration img-circle-bg">
       <img :src="imgSrc" :alt="$t(props.title)" />
     </div>
   </div>
