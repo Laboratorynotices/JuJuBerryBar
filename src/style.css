@@ -62,6 +62,7 @@
       @apply bg-background-primary text-neutral-high;
     }
 
+    /* Цвета для "вспышек" */
     .flashed::before {
       background: linear-gradient(
         267deg,
@@ -80,6 +81,7 @@
       );
     }
 
+    /* Кнопки-пилюли */
     .app-button {
       &.primary {
         @apply text-background-secondary;
@@ -142,6 +144,7 @@
       );
     }
 
+    /* Кнопки-пилюли */
     .app-button {
       &.primary {
         @apply text-background-secondary-dark;
@@ -390,15 +393,15 @@ header {
 
     & .benefit-card {
       @apply text-center mx-auto
-    /* Дублируем равную ширину */
-    flex-1 w-[clamp(130px,25vw,220px)];
+      /* Дублируем равную ширину */
+      flex-1 w-[clamp(130px,25vw,220px)];
 
       & .card-icon {
         @apply mx-auto mb-3
-      /* Задаём размеры картинки карточки */
-      w-[clamp(90px,15vw,150px)] h-[clamp(90px,15vw,150px)]
-      /* Меняем расположение картинки карточки */
-    relative;
+        /* Задаём размеры картинки карточки */
+        w-[clamp(90px,15vw,150px)] h-[clamp(90px,15vw,150px)]
+        /* Меняем расположение картинки карточки */
+        relative;
 
         & .card-icon-decoration {
           &::before {
