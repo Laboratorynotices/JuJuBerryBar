@@ -95,7 +95,8 @@
     /* Кнопки-пилюли */
     .app-button {
       &.primary,
-      &.cardBtn {
+      &.cardBtn,
+      &.eventCard {
         @apply text-background-secondary;
         background: linear-gradient(
           265deg,
@@ -146,6 +147,10 @@
         @apply bg-background-primary;
       }
     }
+
+    .events-section .cards-list .card-item h3 {
+      @apply text-background-secondary;
+    }
   }
 
   /* Темная тема */
@@ -185,7 +190,8 @@
     /* Кнопки-пилюли */
     .app-button {
       &.primary,
-      &.cardBtn {
+      &.cardBtn,
+      &.eventCard {
         @apply text-background-secondary-dark;
         background: linear-gradient(
           265deg,
@@ -237,6 +243,10 @@
         /* Возвращаем задний фон */
         @apply bg-background-primary-dark;
       }
+    }
+
+    .events-section .cards-list .card-item h3 {
+      @apply text-background-secondary-dark;
     }
   }
 }
@@ -356,6 +366,9 @@ header {
   }
   &.cardBtn {
     @apply py-[clamp(3px,0.5vw,5px)] px-[clamp(13px,2vw,20px)] block;
+  }
+  &.eventCard {
+    @apply py-[clamp(10px,2.5vw,25px)] px-[clamp(30px,6vw,60px)] block;
   }
 }
 
@@ -631,6 +644,101 @@ header {
           }
         }
       }
+    }
+  }
+}
+
+.events-section {
+  @apply mb-[clamp(35px,6vw,60px)];
+
+  & .description {
+    /* Упорядочиваем дочерние элементы */
+    @apply flex flex-col md:flex-row-reverse gap-[clamp(32px,10vw,100px)]
+    /* выравнивание дочерних элементов посередне */
+    items-center text-center md:text-left
+    /* Ограничения и отступы */
+    mb-[clamp(32px,6vw,63px)] md:w-3/4 md:ml-auto;
+
+    & .flashed::before {
+      /* Позиционирование "вспышки" */
+      @apply bottom-[clamp(40px,6vw,60px)] right-[clamp(20px,4vw,40px)];
+    }
+
+    & .branch-decorated::after {
+      /* Позиционирование веточки */
+      @apply top-0
+      right-[clamp(20px,40vw,400px)]
+      /* Разворачиваем веточку */
+      -scale-x-100;
+    }
+  }
+
+  & .cards-list {
+    /* Упорядочиваем дочерние элементы */
+    @apply flex flex-wrap gap-[clamp(12px,3vw,30px)];
+
+    & .card-item {
+      @apply flex flex-col justify-between
+      /* Ширина дочерних элементов */
+      w-full
+      md:w-[calc(50%-clamp(6px,1.5vw,15px))]
+      lg:w-[calc(33.333%-clamp(8px,2vw,20px))]
+      /* Высота дочерних элементов */
+      h-[clamp(130px,30vw,300px)]
+      /* Отступы */
+      py-[clamp(24px,4.5vw,45px)]
+      px-[clamp(12px,2vw,20px)]
+      /* Изменяем порядок дочерних элементов */
+      lg:order-2
+      /* Задний фон */
+      bg-[url('src/assets/imgs/Events/event-default.png')]
+      bg-no-repeat bg-cover bg-center
+      rounded-[clamp(15px,3vw,30px)];
+
+      & h3 {
+        @apply uppercase font-medium
+        text-[clamp(16px,3vw,32px)]
+        w-2/3 lg:w-full;
+      }
+
+      & .card-item__button-wrapper {
+        display: inherit;
+      }
+    }
+
+    & .card-item.md-hidden {
+      /* Скрываем карточку, если она вторая с конца и количество карточек нечётное */
+      @apply md:hidden lg:flex;
+    }
+
+    & .card-item:first-child,
+    & .card-item:last-child {
+      /* Задаём ширину дочерним элементам */
+      @apply w-full
+      lg:w-[calc(50%-clamp(6px,1.5vw,15px))] 
+      /* Изменяем порядок дочерних элементов */
+      lg:order-1;
+
+      & h3 {
+        @apply lg:w-1/2;
+      }
+    }
+
+    /* Личные задние фоны для карточек */
+    & .card-item.card-item--1 {
+      @apply bg-[url('src/assets/imgs/Events/event-1.png')];
+    }
+    & .card-item.card-item--2 {
+      @apply bg-[url('src/assets/imgs/Events/event-2.png')];
+    }
+    & .card-item.card-item--3 {
+      @apply bg-[url('src/assets/imgs/Events/event-3.png')];
+    }
+    & .card-item.card-item--4 {
+      @apply bg-[url('src/assets/imgs/Events/event-4.png')];
+    }
+    & .card-item.card-item--5 {
+      @apply bg-[url('src/assets/imgs/Events/event-5.png')];
     }
   }
 }
