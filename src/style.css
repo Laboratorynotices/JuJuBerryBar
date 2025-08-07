@@ -151,6 +151,31 @@
     .events-section .cards-list .card-item h3 {
       @apply text-background-secondary;
     }
+
+    .contacts-section {
+      & .img-wrapper {
+        & .img-star {
+          @apply text-background-secondary;
+        }
+
+        &::before {
+          @apply bg-accent-soft;
+        }
+      }
+
+      & .text-block-wrapper a {
+        @apply text-neutral-high;
+
+        & .icon-phone {
+          & .gradient-start {
+            stop-color: var(--color-accent-primary);
+          }
+          & .gradient-end {
+            stop-color: var(--color-accent-tertiary);
+          }
+        }
+      }
+    }
   }
 
   /* Темная тема */
@@ -247,6 +272,31 @@
 
     .events-section .cards-list .card-item h3 {
       @apply text-background-secondary-dark;
+    }
+
+    .contacts-section {
+      & .img-wrapper {
+        & .img-star {
+          @apply text-background-secondary-dark;
+        }
+
+        &::before {
+          @apply bg-accent-soft-dark;
+        }
+      }
+
+      & .text-block-wrapper a {
+        @apply text-neutral-high-dark;
+
+        .icon-phone {
+          & .gradient-start {
+            stop-color: var(--color-accent-primary-dark);
+          }
+          & .gradient-end {
+            stop-color: var(--color-accent-tertiary-dark);
+          }
+        }
+      }
     }
   }
 }
@@ -514,6 +564,7 @@ header {
   & .first-img-wrapper {
     /* Ширина картинки и её тени */
     --img-width: 90%;
+
     /* Координаты вершин полигона для обрезания картинки */
     --img-polygon: polygon(74% 0, 100% 26%, 100% 100%, 0 100%, 0 0);
 
@@ -739,6 +790,89 @@ header {
     }
     & .card-item.card-item--5 {
       @apply bg-[url('src/assets/imgs/Events/event-5.png')];
+    }
+  }
+}
+
+.contacts-section {
+  /* На сколько вниз уходит декорация картинки */
+  --img-decoration-offset-vertical: clamp(15px, 3vw, 35px);
+  /* На сколько вправо уходит декорация картинки */
+  --img-decoration-offset-horizontal: clamp(20px, 5vw, 50px);
+
+  /* Расставляем дочерние элементы */
+  @apply flex flex-col justify-between
+  md:flex-row md:items-center
+  /* Отступы*/
+  mb-[clamp(35px,6vw,60px)]
+  gap-[clamp(30px,10vw,100px)];
+
+  & .img-wrapper {
+    /* Координаты вершин полигона для обрезания картинки */
+    --img-polygon: polygon(100% 0, 100% 100%, 0 100%, 0 10%, 20% 0);
+
+    @apply relative mb-7
+    /* Ограничиваем ширину картинки */
+    /*
+    w-[calc(100%-var(--img-decoration-offset-horizontal))]
+    */
+    mr-[var(--img-decoration-offset-horizontal)]
+    /* Изменяем порядок дочерних элементов */
+    md:order-2;
+
+    &::before {
+      @apply content-[""] 
+        bg-no-repeat bg-cover bg-center
+        absolute
+        top-[var(--img-decoration-offset-vertical)]
+        left-[var(--img-decoration-offset-horizontal)]
+        w-full h-full;
+      clip-path: var(--img-polygon);
+    }
+
+    & .img-star {
+      @apply /* Располагаем */
+      top-[1rem] right-0 md:left-0 absolute z-10
+      translate-x-1/2 md:-translate-x-1/2 -translate-y-1/2
+      /* Задаём размеры */
+      w-[6rem] h-[6rem] p-[1rem] lg:w-[8rem] lg:h-[8rem] lg:p-[2rem]
+      /* Украшаем */
+      uppercase items-center font-semibold
+      /* Центрируем текст по вертикали и горизонтали */
+      flex justify-center text-center align-middle
+      /* Задний фон */
+      bg-[url(/src/assets/imgs/Hero/benefits/star.svg)] bg-no-repeat bg-cover bg-center;
+    }
+
+    & img {
+      clip-path: var(--img-polygon);
+    }
+
+    &.branch-decorated::after {
+      @apply top-0 left-0;
+      scale: 2;
+    }
+  }
+
+  & .text-block-wrapper {
+    @apply text-center md:text-left;
+
+    & .header {
+      @apply mb-[clamp(35px,6vw,60px)];
+    }
+
+    & .text-block {
+      @apply mb-[clamp(40px,5.5vw,55px)] w-[80%] md:w-full mx-auto md:mx-0;
+    }
+
+    & a {
+      @apply font-medium text-[clamp(20px,3.5vw,35px)]
+      /* Выстраиваем элементы в ряд */
+      flex items-center justify-center md:justify-start gap-[clamp(15px,2vw,25px)];
+
+      & .icon-phone {
+        @apply w-[clamp(25px,5vw,50px)] h-[clamp(25px,5vw,50px)];
+      }
     }
   }
 }
