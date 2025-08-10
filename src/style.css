@@ -84,7 +84,8 @@
 
     header > p,
     .headingPrimary span,
-    .hero-section .stats-list li span.value::after {
+    .hero-section .stats-list li span.value::after,
+    .footer-section .phone {
       background: linear-gradient(
         263deg,
         var(--color-accent-primary) 3.14%,
@@ -176,6 +177,43 @@
         }
       }
     }
+
+    .footer-section {
+      @apply bg-background-secondary;
+
+      & .first-row {
+        & .logo {
+          background: linear-gradient(
+            263deg,
+            var(--color-accent-primary) 3.14%,
+            var(--color-accent-tertiary) 87.2%
+          );
+        }
+
+        & nav.footer-navigation > ul.navigation-list > li {
+          & a:hover {
+            @apply text-accent-primary;
+          }
+
+          & > a {
+            @apply text-neutral-high;
+          }
+
+          & > ul > li > a {
+            @apply text-neutral-medium;
+          }
+        }
+
+        & .arrow-to-top {
+          & .gradient-start {
+            stop-color: var(--color-accent-primary);
+          }
+          & .gradient-end {
+            stop-color: var(--color-accent-tertiary);
+          }
+        }
+      }
+    }
   }
 
   /* Темная тема */
@@ -204,7 +242,8 @@
 
     header > p,
     .headingPrimary span,
-    .hero-section .stats-list li span.value::after {
+    .hero-section .stats-list li span.value::after,
+    .footer-section .phone {
       background: linear-gradient(
         263deg,
         var(--color-accent-primary-dark) 3.14%,
@@ -298,7 +337,49 @@
         }
       }
     }
+
+    .footer-section {
+      @apply bg-background-secondary-dark;
+
+      & .first-row {
+        & .logo {
+          background: linear-gradient(
+            263deg,
+            var(--color-accent-primary-dark) 3.14%,
+            var(--color-accent-tertiary-dark) 87.2%
+          );
+        }
+
+        & nav.footer-navigation > ul.navigation-list > li {
+          & a:hover {
+            @apply text-accent-primary-dark;
+          }
+
+          & > a {
+            @apply text-neutral-high-dark;
+          }
+
+          & > ul > li > a {
+            @apply text-neutral-medium-dark;
+          }
+        }
+
+        & .arrow-to-top {
+          & .gradient-start {
+            stop-color: var(--color-accent-primary-dark);
+          }
+          & .gradient-end {
+            stop-color: var(--color-accent-tertiary-dark);
+          }
+        }
+      }
+    }
   }
+}
+
+html {
+  /* Плавное прокручивание при якорных ссылках. */
+  @apply scroll-smooth;
 }
 
 body {
@@ -348,7 +429,7 @@ body {
 }
 
 /* Оформление навигации */
-nav {
+nav.nav-container {
   & ul li a {
     /* Цвета для светлой темы */
     @apply text-neutral-high hover:text-neutral-medium 
@@ -877,6 +958,68 @@ header {
   }
 }
 
+.footer-section {
+  /* Отступы */
+  @apply py-[clamp(20px,4vw,40px)];
+
+  & .first-row {
+    /* Настраиваем Flexbox */
+    @apply flex flex-row flex-wrap md:flex-nowrap justify-between items-start;
+
+    & .logo {
+      /* Теоретически должно было хватить bg-clip-text,
+         но оно не работает -
+         градиентная заливка не переносится на цвет шрифта.
+         Из-за этого мы применяем background-clip и схожие свойства.
+      */
+      @apply bg-clip-text
+      /* Типография */
+      font-extrabold
+      leading-[normal]
+      text-[clamp(25px,4vw,40px)]
+      tracking-[clamp(-0.775px,-0.13vw,-1.128px)]
+      /* Ограничиваем ширину */
+      w-fit
+      /* Последняя буква обрезается, добавляем пространство */
+      pr-1;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    & .footer-navigation {
+      @apply w-full md:w-auto
+      order-1 md:order-none;
+
+      & > ul {
+        @apply flex justify-between flex-wrap gap-[clamp(10px,2vw,20px)]
+        mb-[clamp(20px,4vw,40px)]
+        md:leading-[normal];
+
+        & > li {
+          @apply w-[calc(50%-clamp(10px,2vw,20px))] 
+          md:w-[calc(25%-clamp(10px,2vw,20px))]
+          font-medium;
+        }
+      }
+    }
+
+    & .arrow-to-top {
+      @apply w-[clamp(50px,8.5vw,85px)] h-[clamp(50px,8.5vw,85px)]
+      ml-2 mt-1;
+    }
+  }
+
+  & .phone {
+    /* Типография */
+    @apply text-[clamp(15px,2.8vw,28px)] font-medium
+    bg-clip-text w-fit;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
 /* Анимация для картинки в блоке "Герой".
   Поскольку изменение элементарное, то мы описали лишь конечное состояние,
   а начальное состояние будет определено в самом элементе.
@@ -885,9 +1028,4 @@ header {
   to {
     top: 2vw;
   }
-}
-
-/* @TODO: Макет - удалить, когда не будет нужен */
-.mock-up {
-  @apply border p-10 mx-6 xl:mx-auto md:max-w-[1270px];
 }
