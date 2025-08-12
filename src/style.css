@@ -452,7 +452,8 @@ nav.nav-container {
 
 /* Оформление шапки сайта */
 header {
-  @apply flex justify-between md:justify-start gap-[clamp(81px,13vw,95px)] leading-[normal] items-center my-10;
+  @apply flex justify-between gap-[clamp(40px,5vw,47px)]
+  leading-[normal] items-center my-10;
 
   > p {
     @apply font-extrabold tracking-[clamp(-0.66px,-0.12vw,-1.13px)] text-[clamp(22px,4vw,38px)] leading-[140%];
@@ -461,11 +462,17 @@ header {
     -webkit-text-fill-color: transparent;
   }
 
-  > nav > ul {
-    @apply text-[clamp(14px,2.3vw,20px)] md:flex gap-[clamp(30px,7vw,95px)];
+  > nav {
+    /* В мобильной версии навигация (кнопка-гамбургер) последняя (самая правая),
+       а в других версиях между логотипом и кнопкой переключения языка. */
+    @apply order-1 md:order-none;
 
-    > li {
-      @apply mb-4 md:mb-0;
+    & > ul {
+      @apply text-[clamp(14px,2.3vw,20px)] md:flex gap-[clamp(30px,7vw,95px)];
+
+      > li {
+        @apply mb-4 md:mb-0;
+      }
     }
   }
 }

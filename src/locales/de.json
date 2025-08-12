@@ -1,5 +1,4 @@
 {
-  "hello": "Hallo",
   "Delicious": "Köstliches",
   "Events": "Events",
   "Contacts": "Kontakte",
@@ -43,5 +42,7 @@
   "Berry Bar": "Beeren-Bar",
   "Juice Club": "Juice-Club",
   "Socials": "Socials",
-  "Benefits": "Benefits"
+  "Benefits": "Benefits",
+  "switch language": "Sprache wechseln",
+  "switch to ru": "Wechsel zu Russisch"
 }
