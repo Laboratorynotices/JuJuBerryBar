@@ -830,7 +830,7 @@ header {
       /* Изменяем порядок дочерних элементов */
       lg:order-2
       /* Задний фон */
-      bg-[url('src/assets/imgs/Events/event-default.png')]
+      bg-[url(/src/assets/imgs/Events/event-default.png)]
       bg-no-repeat bg-cover bg-center
       rounded-[clamp(15px,3vw,30px)];
 
@@ -865,19 +865,19 @@ header {
 
     /* Личные задние фоны для карточек */
     & .card-item.card-item--1 {
-      @apply bg-[url('src/assets/imgs/Events/event-1.png')];
+      @apply bg-[url(/src/assets/imgs/Events/event-1.png)];
     }
     & .card-item.card-item--2 {
-      @apply bg-[url('src/assets/imgs/Events/event-2.png')];
+      @apply bg-[url(/src/assets/imgs/Events/event-2.png)];
     }
     & .card-item.card-item--3 {
-      @apply bg-[url('src/assets/imgs/Events/event-3.png')];
+      @apply bg-[url(/src/assets/imgs/Events/event-3.png)];
     }
     & .card-item.card-item--4 {
-      @apply bg-[url('src/assets/imgs/Events/event-4.png')];
+      @apply bg-[url(/src/assets/imgs/Events/event-4.png)];
     }
     & .card-item.card-item--5 {
-      @apply bg-[url('src/assets/imgs/Events/event-5.png')];
+      @apply bg-[url(/src/assets/imgs/Events/event-5.png)];
     }
   }
 }
